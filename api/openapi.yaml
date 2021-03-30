@@ -1,0 +1,554 @@
+openapi: 3.0.0
+info:
+  title: HRMS Project
+  description: "This is an API of using OAuth2 Application Flow in a specification\
+    \ to describe security to our API. Document URL https://swagger.io/tools/open-source/getting-started/.\n\
+    <h2>. Controller\n\n<h3>1. Domain\n\n    a. Find domain\n    b. Forgot domain\n\
+    <h3>2. Account\n\n    2.1. login\n    2.2. forgot password\n    2.3. reset password\n\
+    \    \n <h2> Status and error messages.\n  \n        200 Success Request\n   \
+    \     201 Created\n        400 Bad Request\n        401 Unauthenticated Request\n\
+    \        403 Forbidden\n        404 Resource Not Found\n        405 Method Not\
+    \ Allowed\n        406 Not Acceptable\n        415 Unsupported Media Type\n  \
+    \      429 Too Many Requests\n        500 Internal Server Request\n        Example:\n\
+    \          { errors:\n            [{- code: invalid_value\n              message:\
+    \ Value not present in system\n              field: leave_type_id\n          \
+    \  }]\n           }"
+  contact:
+    name: Admin
+    url: https://synchrms.com
+    email: tech@synchronisys.com
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/bhuwanpaneru/synchrms/1.0.0
+  description: SwaggerHub API Auto Mocking
+security:
+- accessCode:
+  - read
+- bearerAuth:
+  - read
+  - write
+paths:
+  /api/Domain/findDomain:
+    get:
+      tags:
+      - Domain
+      summary: Enter Doamin name
+      description: This can search a domain name.
+      operationId: findDomain
+      parameters:
+      - name: domainname
+        in: query
+        description: The domain name for login
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+                x-content-type: application/json
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+        "201":
+          description: successful operation created
+        "400":
+          description: Bad Request Client sent an invalid request
+        "401":
+          description: UnauthorizedClient failed to authenticate with the server
+        "403":
+          description: Forbidden Client authenticated but does not have permission
+            to access the requested resource
+        "404":
+          description: Not Found The requested resource does not exist
+        "405":
+          description: Method Not Allowed
+        "406":
+          description: Not Acceptable
+        "412":
+          description: Precondition Failed One or more conditions in the request header
+            fields evaluated to false
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "500":
+          description: Internal Server Error A generic error occurred on the server
+            please contact to admin
+        "503":
+          description: Service Unavailable The requested service is not available
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Domain
+  /api/Domain/forgotDomain:
+    post:
+      tags:
+      - Domain
+      summary: Forgot your Domain Name
+      description: This can send a reset domain request by email/username.
+      operationId: forgotDomain
+      parameters:
+      - name: domainname
+        in: query
+        description: The user name/ email for find a domain
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+                x-content-type: application/json
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+        "201":
+          description: successful operation created
+        "400":
+          description: Bad Request Client sent an invalid request
+        "401":
+          description: UnauthorizedClient failed to authenticate with the server
+        "403":
+          description: Forbidden Client authenticated but does not have permission
+            to access the requested resource
+        "404":
+          description: Not Found The requested resource does not exist
+        "405":
+          description: Method Not Allowed
+        "406":
+          description: Not Acceptable
+        "412":
+          description: Precondition Failed One or more conditions in the request header
+            fields evaluated to false
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "500":
+          description: Internal Server Error A generic error occurred on the server
+            please contact to admin
+        "503":
+          description: Service Unavailable The requested service is not available
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Domain
+  /api/Account/accessToken:
+    get:
+      tags:
+      - Account
+      summary: 'Get Access Token '
+      description: Get Access Token.
+      operationId: accessToken
+      parameters: []
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+                x-content-type: application/json
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+        "201":
+          description: successful operation created
+        "400":
+          description: Bad Request Client sent an invalid request
+        "401":
+          description: UnauthorizedClient failed to authenticate with the server
+        "403":
+          description: Forbidden Client authenticated but does not have permission
+            to access the requested resource
+        "404":
+          description: Not Found The requested resource does not exist
+        "405":
+          description: Method Not Allowed
+        "406":
+          description: Not Acceptable
+        "412":
+          description: Precondition Failed One or more conditions in the request header
+            fields evaluated to false
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "500":
+          description: Internal Server Error A generic error occurred on the server
+            please contact to admin
+        "503":
+          description: Service Unavailable The requested service is not available
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Account
+  /api/Account/test:
+    get:
+      tags:
+      - Account
+      summary: Enter Doamin name
+      description: This can search a domain name.
+      operationId: test
+      parameters: []
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+                x-content-type: application/json
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+        "201":
+          description: successful operation created
+        "400":
+          description: Bad Request Client sent an invalid request
+        "401":
+          description: UnauthorizedClient failed to authenticate with the server
+        "403":
+          description: Forbidden Client authenticated but does not have permission
+            to access the requested resource
+        "404":
+          description: Not Found The requested resource does not exist
+        "405":
+          description: Method Not Allowed
+        "406":
+          description: Not Acceptable
+        "412":
+          description: Precondition Failed One or more conditions in the request header
+            fields evaluated to false
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "500":
+          description: Internal Server Error A generic error occurred on the server
+            please contact to admin
+        "503":
+          description: Service Unavailable The requested service is not available
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Account
+  /api/Account/login:
+    get:
+      tags:
+      - Account
+      summary: Logs user into the system
+      operationId: loginUser
+      parameters:
+      - name: domainname
+        in: query
+        description: The domain name for login
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: username
+        in: query
+        description: The user name for login
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        description: The password for login in clear text
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+                x-content-type: application/json
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+        "201":
+          description: successful operation created
+        "400":
+          description: Bad Request Client sent an invalid request
+        "401":
+          description: UnauthorizedClient failed to authenticate with the server
+        "403":
+          description: Forbidden Client authenticated but does not have permission
+            to access the requested resource
+        "404":
+          description: Not Found The requested resource does not exist
+        "405":
+          description: Method Not Allowed
+        "406":
+          description: Not Acceptable
+        "412":
+          description: Precondition Failed One or more conditions in the request header
+            fields evaluated to false
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "500":
+          description: Internal Server Error A generic error occurred on the server
+            please contact to admin
+        "503":
+          description: Service Unavailable The requested service is not available
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Account
+  /api/Account/logout:
+    get:
+      tags:
+      - Account
+      summary: Logs out current logged in user session
+      operationId: logoutUser
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Account
+  /api/Account/forgotPassword:
+    post:
+      tags:
+      - Account
+      summary: Forgot your password
+      description: This can send a reset password request via email.
+      operationId: forgotPassword
+      parameters:
+      - name: domainname
+        in: query
+        description: The user name for login
+        required: true
+        style: form
+        explode: true
+        schema:
+          maximum: 50
+          minimum: 6
+          type: string
+      - name: username
+        in: query
+        description: The username/email for login
+        required: true
+        style: form
+        explode: true
+        schema:
+          maximum: 50
+          minimum: 6
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+                x-content-type: application/json
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+        "201":
+          description: successful operation created
+        "400":
+          description: Bad Request Client sent an invalid request
+        "401":
+          description: UnauthorizedClient failed to authenticate with the server
+        "403":
+          description: Forbidden Client authenticated but does not have permission
+            to access the requested resource
+        "404":
+          description: Not Found The requested resource does not exist
+        "405":
+          description: Method Not Allowed
+        "406":
+          description: Not Acceptable
+        "412":
+          description: Precondition Failed One or more conditions in the request header
+            fields evaluated to false
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "500":
+          description: Internal Server Error A generic error occurred on the server
+            please contact to admin
+        "503":
+          description: Service Unavailable The requested service is not available
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Account
+  /api/Account/resetPassword:
+    post:
+      tags:
+      - Account
+      summary: Create New Password
+      description: This can only be done by email link.
+      operationId: resetPassword
+      parameters:
+      - name: password
+        in: query
+        description: 'The password for reset password '
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: confirmpassword
+        in: query
+        description: The confirm password for reset password
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+                x-content-type: application/json
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/inline_response_200'
+        "201":
+          description: successful operation created
+        "400":
+          description: Bad Request Client sent an invalid request
+        "401":
+          description: UnauthorizedClient failed to authenticate with the server
+        "403":
+          description: Forbidden Client authenticated but does not have permission
+            to access the requested resource
+        "404":
+          description: Not Found The requested resource does not exist
+        "405":
+          description: Method Not Allowed
+        "406":
+          description: Not Acceptable
+        "412":
+          description: Precondition Failed One or more conditions in the request header
+            fields evaluated to false
+        "415":
+          description: Unsupported Media Type
+        "429":
+          description: Too Many Requests
+        "500":
+          description: Internal Server Error A generic error occurred on the server
+            please contact to admin
+        "503":
+          description: Service Unavailable The requested service is not available
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Account
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        phone:
+          type: string
+        userStatus:
+          type: integer
+          description: User Status
+          format: int32
+      xml:
+        name: User
+    Domain:
+      type: object
+      properties:
+        domainName:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+    inline_response_200:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      example:
+        name: name
+        id: 0
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    accessCode:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: http://example.com/oauth/auth
+          tokenUrl: http://example.com/oauth/token
+          scopes:
+            write: allows modifying resources
+            read: allows reading resources
